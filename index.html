@@ -1,240 +1,722 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trail Running — Strength Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-.ex-link{font-size:13px;color:var(--color-text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:3px}
-.ex-link:hover{text-decoration:underline}
-.tab-btn{padding:10px 12px;border-radius:var(--border-radius-md);cursor:pointer;text-align:left;width:100%}
-.tab-btn:hover{background:var(--color-background-secondary)}
-.ex-row{display:flex;align-items:center;padding:9px 14px;gap:10px;cursor:pointer;transition:background 0.1s}
-.ex-row:hover{background:var(--color-background-secondary)}
-.tick-box{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--color-border-secondary);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s;background:var(--color-background-primary)}
-.tick-box.checked{background:var(--color-text-success);border-color:var(--color-text-success)}
-.tick-box.checked svg{display:block}
-.tick-box svg{display:none;width:11px;height:11px}
-.ex-name-wrap{flex:1;min-width:0;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.ex-name-wrap.done .ex-link,.ex-name-wrap.done span.exname{opacity:.4;text-decoration:line-through;text-decoration-color:var(--color-text-tertiary)}
-</style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<h2 class="sr-only">Trail running strength plan v4 — tickable exercises</h2>
-<div id="root" style="padding:1rem 0;font-family:var(--font-sans)"></div>
+  :root {
+    --bg:        #0f1112;
+    --bg2:       #171a1c;
+    --bg3:       #1e2226;
+    --border:    #2a2f34;
+    --border2:   #343b42;
+    --text:      #e8eaec;
+    --text2:     #8d9aa6;
+    --text3:     #556170;
+
+    --amber:     #f5a623;
+    --amber-bg:  #1f1a0e;
+    --amber-bdr: #3d3010;
+
+    --teal:      #3ecf8e;
+    --teal-bg:   #0d1f18;
+    --teal-bdr:  #1a3d2e;
+
+    --blue:      #4da6ff;
+    --blue-bg:   #0e1929;
+    --blue-bdr:  #1a3050;
+
+    --pink:      #f06292;
+    --pink-bg:   #1f0e14;
+    --pink-bdr:  #3d1a24;
+
+    --radius:    10px;
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body:    'Barlow', sans-serif;
+  }
+
+  html { font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  .site-header h1 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    line-height: 1;
+  }
+  .site-header h1 span { color: var(--teal); }
+  .site-header p {
+    font-size: 13px;
+    color: var(--text3);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── TABS ── */
+  .tabs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 16px 24px;
+    background: var(--bg);
+    position: sticky;
+    top: 74px;
+    z-index: 99;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tab-btn {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .tab-btn:hover { border-color: var(--border2); background: var(--bg3); }
+  .tab-btn.active-amber { border-color: var(--amber-bdr); background: var(--amber-bg); }
+  .tab-btn.active-teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
+  .tab-btn.active-blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
+
+  .tab-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    color: var(--text3);
+  }
+  .tab-btn.active-amber .tab-label { color: var(--amber); }
+  .tab-btn.active-teal  .tab-label { color: var(--teal);  }
+  .tab-btn.active-blue  .tab-label { color: var(--blue);  }
+
+  .tab-name {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .tab-dur {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+  .tab-btn.active-amber .tab-dur,
+  .tab-btn.active-amber .tab-name { color: var(--amber); }
+  .tab-btn.active-teal  .tab-dur,
+  .tab-btn.active-teal  .tab-name { color: var(--teal);  }
+  .tab-btn.active-blue  .tab-dur,
+  .tab-btn.active-blue  .tab-name { color: var(--blue);  }
+
+  .tab-prog-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 1px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .tab-prog-fill {
+    height: 100%;
+    border-radius: 1px;
+    transition: width 0.25s ease;
+  }
+
+  /* ── MAIN ── */
+  .main { padding: 20px 24px 60px; max-width: 820px; margin: 0 auto; }
+
+  /* ── WORKOUT HEADER ── */
+  .wk-header {
+    border-radius: var(--radius);
+    border: 1px solid;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .wk-header.amber { border-color: var(--amber-bdr); background: var(--amber-bg); }
+  .wk-header.teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
+  .wk-header.blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
+
+  .wk-header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .wk-header-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .wk-header.amber .wk-header-name { color: var(--amber); }
+  .wk-header.teal  .wk-header-name { color: var(--teal);  }
+  .wk-header.blue  .wk-header-name { color: var(--blue);  }
+
+  .dur-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .dur-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text2);
+    white-space: nowrap;
+    border: 1px solid var(--border);
+  }
+  .wk-header.amber .dur-pill { color: var(--amber); background: rgba(245,166,35,0.08); border-color: var(--amber-bdr); }
+  .wk-header.teal  .dur-pill { color: var(--teal);  background: rgba(62,207,142,0.08); border-color: var(--teal-bdr); }
+  .wk-header.blue  .dur-pill { color: var(--blue);  background: rgba(77,166,255,0.08); border-color: var(--blue-bdr); }
+
+  .wk-focus {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 6px;
+  }
+  .wk-subtitle {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text3);
+    margin-top: 3px;
+  }
+
+  .wk-progress { margin-top: 12px; }
+  .wk-prog-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 5px;
+  }
+  .wk-prog-track {
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .wk-prog-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    opacity: 0.55;
+  }
+  .amber .wk-prog-fill { background: var(--amber); }
+  .teal  .wk-prog-fill { background: var(--teal);  }
+  .blue  .wk-prog-fill { background: var(--blue);  }
+
+  /* ── SECTIONS ── */
+  .sections { display: flex; flex-direction: column; gap: 12px; }
+
+  .section {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .sec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 16px 9px 13px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg3);
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .sec-header-left { display: flex; align-items: center; gap: 8px; }
+  .sec-accent { width: 3px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .sec-amber .sec-accent { background: var(--amber); }
+  .sec-amber .sec-title  { color: var(--amber); }
+  .sec-teal  .sec-accent { background: var(--teal); }
+  .sec-teal  .sec-title  { color: var(--teal); }
+  .sec-blue  .sec-accent { background: var(--blue); }
+  .sec-blue  .sec-title  { color: var(--blue); }
+  .sec-pink  .sec-accent { background: var(--pink); }
+  .sec-pink  .sec-title  { color: var(--pink); }
+
+  .sec-dur { font-size: 11px; color: var(--text3); white-space: nowrap; }
+  .sec-badge {
+    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .sec-badge-done {
+    background: var(--teal-bg);
+    color: var(--teal);
+    border: 1px solid var(--teal-bdr);
+  }
+  .sec-badge-count { color: var(--text3); }
+
+  /* ── EXERCISE ROWS ── */
+  .ex-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 1px solid var(--border);
+  }
+  .ex-row:last-child { border-bottom: none; }
+  .ex-row:hover { background: var(--bg3); }
+  .ex-row.done { opacity: 0.5; }
+
+  .tick-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid var(--border2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+    background: var(--bg);
+  }
+  .tick-box.checked {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .tick-box svg { display: none; }
+  .tick-box.checked svg { display: block; }
+
+  .ex-info { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .ex-link {
+    font-size: 13px;
+    color: var(--text);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.1s;
+  }
+  .ex-link:hover { color: var(--blue); }
+  .ex-link .ext-icon {
+    width: 10px;
+    height: 10px;
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+  .ex-name-plain { font-size: 13px; color: var(--text); }
+  .ex-row.done .ex-link,
+  .ex-row.done .ex-name-plain {
+    text-decoration: line-through;
+    text-decoration-color: var(--text3);
+    color: var(--text3);
+  }
+  .opt-badge {
+    font-size: 10px;
+    padding: 1px 7px;
+    border-radius: 20px;
+    background: var(--bg3);
+    color: var(--text3);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ex-sets {
+    font-size: 12px;
+    color: var(--text3);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── FOOTER BITS ── */
+  .rest-note {
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 12px;
+    color: var(--text3);
+    line-height: 1.6;
+  }
+  .rest-note strong { color: var(--text2); font-weight: 500; }
+
+  .rotation-block {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .rotation-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .rotation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rot-cell {
+    padding: 10px 12px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+  .rot-label { font-size: 11px; color: var(--text3); margin-bottom: 6px; }
+  .rot-pills { display: flex; justify-content: center; gap: 6px; }
+  .rot-pill {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 3px 14px;
+    border-radius: var(--radius);
+    border: 1px solid;
+  }
+  .rot-pill-amber { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-bdr); }
+  .rot-pill-teal  { background: var(--teal-bg);  color: var(--teal);  border-color: var(--teal-bdr);  }
+  .rot-pill-blue  { background: var(--blue-bg);  color: var(--blue);  border-color: var(--blue-bdr);  }
+  .rotation-note {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── RESET ── */
+  .reset-btn {
+    margin-top: 20px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text3);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .reset-btn:hover { color: var(--text2); border-color: var(--border2); }
+
+  @media (max-width: 600px) {
+    .tabs-row { gap: 6px; padding: 12px 14px; top: 68px; }
+    .main { padding: 14px 14px 50px; }
+    .site-header { padding: 16px 14px 12px; }
+    .tab-name { font-size: 13px; }
+    .tab-dur { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Trail Running <span>Strength Plan</span></h1>
+  <p>3 rotating workouts · 2 sessions per week · Intermediate</p>
+</header>
+
+<div class="tabs-row" id="tabsRow"></div>
+
+<main class="main" id="main"></main>
 
 <script>
-const S={
-  amber:{bg:"var(--color-background-warning)",txt:"var(--color-text-warning)",bdr:"var(--color-border-warning)"},
-  teal:{bg:"var(--color-background-success)",txt:"var(--color-text-success)",bdr:"var(--color-border-success)"},
-  blue:{bg:"var(--color-background-info)",txt:"var(--color-text-info)",bdr:"var(--color-border-info)"},
-  pink:{bg:"var(--color-background-danger)",txt:"var(--color-text-danger)",bdr:"var(--color-border-danger)"},
+const S = {
+  amber: { cls: 'amber', txt: 'var(--amber)', bdr: 'var(--amber-bdr)', bg: 'var(--amber-bg)', fill: 'var(--amber)', tabActive: 'active-amber', secCls: 'sec-amber', pillCls: 'rot-pill-amber' },
+  teal:  { cls: 'teal',  txt: 'var(--teal)',  bdr: 'var(--teal-bdr)',  bg: 'var(--teal-bg)',  fill: 'var(--teal)',  tabActive: 'active-teal',  secCls: 'sec-teal',  pillCls: 'rot-pill-teal'  },
+  blue:  { cls: 'blue',  txt: 'var(--blue)',  bdr: 'var(--blue-bdr)',  bg: 'var(--blue-bg)',  fill: 'var(--blue)',  tabActive: 'active-blue',  secCls: 'sec-blue',  pillCls: 'rot-pill-blue'  },
+  pink:  { cls: 'pink',  txt: 'var(--pink)',  bdr: 'var(--pink-bdr)',  bg: 'var(--pink-bg)',  fill: 'var(--pink)',  tabActive: 'active-pink',  secCls: 'sec-pink',  pillCls: 'rot-pill-pink'  },
 };
 
-// ticked state: key = "workoutId-sectionIdx-exIdx"
-const ticked={};
-
-const WARMUP_EX=[
-  {name:"Wall Banded Leg Drives",sets:2,reps:"10 / side",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
-  {name:"Glute Bridge Knee Drives",sets:2,reps:"10 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-  {name:"Tib Raises",sets:2,reps:"15",url:"https://www.instagram.com/reels/DSaZQb8ETyE/"},
-  {name:"Bent Knee Calf Raises",sets:2,reps:"15",url:"https://www.instagram.com/reels/DUV4cKzjwQT/"},
-  {name:"High Ups",sets:2,reps:"8",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
-  {name:"Wall Calf Raise + Hip Flexion RB Iso",sets:2,reps:"per side",url:"https://www.instagram.com/reels/DY2-A_Mv9-c/"},
-  {name:"Pogo Jumps",sets:2,reps:"20",url:null},
+const WARMUP_EX = [
+  { name: "Wall Banded Leg Drives",                    sets: 2, reps: "10 / side", url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+  { name: "Glute Bridge Knee Drives",                  sets: 2, reps: "10 / side", url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+  { name: "Tib Raises",                                sets: 2, reps: "15",        url: "https://www.instagram.com/reels/DSaZQb8ETyE/" },
+  { name: "Bent Knee Calf Raises",                     sets: 2, reps: "15",        url: "https://www.instagram.com/reels/DUV4cKzjwQT/" },
+  { name: "High Ups",                                  sets: 2, reps: "8",         url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+  { name: "Wall Calf Raise + Hip Flexion RB Iso",      sets: 2, reps: "per side",  url: "https://www.instagram.com/reels/DY2-A_Mv9-c/" },
+  { name: "Pogo Jumps",                                sets: 2, reps: "20",        url: null },
 ];
 
-function warmup(){
-  return{title:"Warm-up",fixedDuration:"~9 min (2 sets)",scheme:"teal",exercises:WARMUP_EX};
+function mkWarmup() {
+  return { title: "Warm-up", fixedDuration: "~9 min (2 sets)", scheme: "teal", exercises: WARMUP_EX };
 }
 
-const WORKOUTS=[
-  {id:"A",name:"Power & Plyo",dur2:"~35 min",dur3:"~49 min",scheme:"amber",
-   focus:"Explosive power · Lateral stability · Reactive strength",
-   subtitle:"Builds fast-twitch power and reactive strength for technical terrain",
-   sections:[
-    warmup(),
-    {title:"Plyometrics",dur2:"~21 min",dur3:"~33 min",scheme:"amber",exercises:[
-      {name:"Single Plate SL Side Jumps",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DPl2hDLjFse/"},
-      {name:"Double Plate Skater Jumps with SL Hop",sets:"2–3",reps:"6 / side",url:"https://www.instagram.com/reels/DWowvZONUhf/"},
-      {name:"Double Plate Skater Jumps + Double SL Hop",sets:"2–3",reps:"6 / side",url:"https://www.instagram.com/reels/DPl2hDLjFse/"},
-      {name:"Alternating Double Pogo Hops with SL Landing",sets:"2–3",reps:"6 / side",url:"https://www.instagram.com/p/DYNFlxPkcxq/?img_index=5"},
-      {name:"Lunge Jumps",sets:"2–3",reps:"8",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
-      {name:"Lunge to Explosive High Knee",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DVwtyw0DRNu/"},
-      {name:"Drop Jump with SL Landing",sets:"2–3",reps:"5 / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-      {name:"Lateral Banded Hops",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-    ]},
-    {title:"Core finisher",dur2:"~6 min",dur3:"~9 min",scheme:"blue",exercises:[
-      {name:"Mountain Climbers with Sliders",sets:"2–3",reps:"20",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-      {name:"In and Out Crunches",sets:"2–3",reps:"12",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
-      {name:"Plank with RB Leg Drives",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-    ]},
-  ]},
-  {id:"B",name:"Strength & Upper Body",dur2:"~34 min",dur3:"~49 min",scheme:"teal",
-   focus:"Unilateral strength · Hip stability · Upper body",
-   subtitle:"Builds the leg strength needed for sustained climbs and descents",
-   sections:[
-    warmup(),
-    {title:"Lower body strength",dur2:"~12 min",dur3:"~20 min",scheme:"amber",exercises:[
-      {name:"DB Box Step Up with Knee Drive",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=elhPvUIAKPg"},
-      {name:"SL DB RDL with Knee Drive",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=elhPvUIAKPg"},
-      {name:"Bulgarian Split Squat with DB/KB Rotation",sets:"2–3",reps:"8 / side",url:null},
-      {name:"Poloquin Frontal Step Downs",sets:"2–3",reps:"10 / side",url:null},
-      {name:"Box Pistol Squats",sets:"2–3",reps:"6 / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-    ]},
-    {title:"Upper body",dur2:"~5 min",dur3:"~8 min",scheme:"pink",exercises:[
-      {name:"Half Kneeling DB Shoulder Press",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=sp4R3g1tRh0"},
-      {name:"KB Hammer Rows",sets:"2–3",reps:"10 / side",url:null},
-    ]},
-    {title:"Core",dur2:"~7 min",dur3:"~11 min",scheme:"blue",exercises:[
-      {name:"MB Russian Twists",sets:"2–3",reps:"15",url:null},
-      {name:"Bird Dog Row",sets:"2–3",reps:"10 / side",url:"https://www.youtube.com/watch?v=sp4R3g1tRh0"},
-      {name:"Side Plank with Leg Lift",sets:"2–3",reps:"30 sec / side",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
-      {name:"Leg Raise Over KB",sets:"2–3",reps:"10",url:null},
-    ]},
-  ]},
-  {id:"C",name:"Running Mechanics",dur2:"~38 min",dur3:"~55 min",scheme:"blue",
-   focus:"Running patterns · Hip strength · Ankle stability",
-   subtitle:"Develops movement quality for technical and hilly terrain",
-   sections:[
-    warmup(),
-    {title:"Running-specific strength",dur2:"~18 min",dur3:"~28 min",scheme:"amber",exercises:[
-      {name:"Elevated Split Squat",sets:"2–3",reps:"10 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-      {name:"Back Lunge Slides",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-      {name:"Elevated Drop Lunge with MB Reach",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DV1lXNVueSH/"},
-      {name:"Curtsy Knee Tap & Drive",sets:"2–3",reps:"10 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-      {name:"Poloquin Lateral Step Downs",sets:"2–3",reps:"10 / side",url:null},
-      {name:"Sliding Cossacks",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-      {name:"Kickstand Power Cleans",sets:"2–3",reps:"6 / side",url:"https://www.instagram.com/reels/DX93Txyxw08/"},
-      {name:"Single-Leg Slider",sets:"2–3",reps:"8 / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-    ]},
-    {title:"Upper body",dur2:"~5 min",dur3:"~8 min",scheme:"pink",exercises:[
-      {name:"KB Frontal Raise + Bicep Curl",sets:"2–3",reps:"10",url:"https://www.instagram.com/reels/DWbHop0AcuE/"},
-      {name:"KB Back Lunge with Uppercut",sets:"2–3",reps:"8 / side",url:"https://www.instagram.com/reels/DYnBaprIXqY/"},
-    ]},
-    {title:"Core finisher",dur2:"~7 min",dur3:"~11 min",scheme:"blue",exercises:[
-      {name:"In and Out Crunches",sets:"2–3",reps:"12",url:"https://www.youtube.com/watch?v=gSl-v08hV2u&list=WL&index=19"},
-      {name:"Flexor Ankle Ball Hold",sets:"2–3",reps:"30 sec / side",url:"https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17"},
-      {name:"Copenhagen Plank",sets:"2–3",reps:"20 sec / side",url:"https://www.instagram.com/reels/DSaZQb8ETyE/",optional:true},
-      {name:"Tabletop Plank Knee Touches",sets:"2–3",reps:"12",url:"https://www.instagram.com/reels/DS682xoDWDC/",optional:true},
-    ]},
-  ]},
+const WORKOUTS = [
+  {
+    id: "A", name: "Power & Plyo", dur2: "~35 min", dur3: "~49 min", scheme: "amber",
+    focus: "Explosive power · Lateral stability · Reactive strength",
+    subtitle: "Builds fast-twitch power and reactive strength for technical terrain",
+    sections: [
+      mkWarmup(),
+      { title: "Plyometrics", dur2: "~21 min", dur3: "~33 min", scheme: "amber", exercises: [
+        { name: "Single Plate SL Side Jumps",                  sets: "2–3", reps: "8 / side", url: "https://www.instagram.com/reels/DPl2hDLjFse/" },
+        { name: "Double Plate Skater Jumps with SL Hop",       sets: "2–3", reps: "6 / side", url: "https://www.instagram.com/reels/DWowvZONUhf/" },
+        { name: "Double Plate Skater Jumps + Double SL Hop",   sets: "2–3", reps: "6 / side", url: "https://www.instagram.com/reels/DPl2hDLjFse/" },
+        { name: "Alternating Double Pogo Hops with SL Landing",sets: "2–3", reps: "6 / side", url: "https://www.instagram.com/p/DYNFlxPkcxq/?img_index=5" },
+        { name: "Lunge Jumps",                                 sets: "2–3", reps: "8",         url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+        { name: "Lunge to Explosive High Knee",                sets: "2–3", reps: "8 / side", url: "https://www.instagram.com/reels/DVwtyw0DRNu/" },
+        { name: "Drop Jump with SL Landing",                   sets: "2–3", reps: "5 / side", url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+        { name: "Lateral Banded Hops",                         sets: "2–3", reps: "10 / side",url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+      ]},
+      { title: "Core finisher", dur2: "~6 min", dur3: "~9 min", scheme: "blue", exercises: [
+        { name: "Mountain Climbers with Sliders", sets: "2–3", reps: "20",        url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+        { name: "In and Out Crunches",            sets: "2–3", reps: "12",        url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+        { name: "Plank with RB Leg Drives",       sets: "2–3", reps: "10 / side",url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+      ]},
+    ]
+  },
+  {
+    id: "B", name: "Strength & Upper Body", dur2: "~34 min", dur3: "~49 min", scheme: "teal",
+    focus: "Unilateral strength · Hip stability · Upper body",
+    subtitle: "Builds the leg strength needed for sustained climbs and descents",
+    sections: [
+      mkWarmup(),
+      { title: "Lower body strength", dur2: "~12 min", dur3: "~20 min", scheme: "amber", exercises: [
+        { name: "DB Box Step Up with Knee Drive",          sets: "2–3", reps: "10 / side", url: "https://www.youtube.com/watch?v=elhPvUIAKPg" },
+        { name: "SL DB RDL with Knee Drive",               sets: "2–3", reps: "10 / side", url: "https://www.youtube.com/watch?v=elhPvUIAKPg" },
+        { name: "Bulgarian Split Squat with DB/KB Rotation",sets: "2–3", reps: "8 / side",  url: null },
+        { name: "Poloquin Frontal Step Downs",             sets: "2–3", reps: "10 / side", url: null },
+        { name: "Box Pistol Squats",                       sets: "2–3", reps: "6 / side",  url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+      ]},
+      { title: "Upper body", dur2: "~5 min", dur3: "~8 min", scheme: "pink", exercises: [
+        { name: "Half Kneeling DB Shoulder Press", sets: "2–3", reps: "10 / side", url: "https://www.youtube.com/watch?v=sp4R3g1tRh0" },
+        { name: "KB Hammer Rows",                  sets: "2–3", reps: "10 / side", url: null },
+      ]},
+      { title: "Core", dur2: "~7 min", dur3: "~11 min", scheme: "blue", exercises: [
+        { name: "MB Russian Twists",      sets: "2–3", reps: "15",          url: null },
+        { name: "Bird Dog Row",           sets: "2–3", reps: "10 / side",   url: "https://www.youtube.com/watch?v=sp4R3g1tRh0" },
+        { name: "Side Plank with Leg Lift",sets:"2–3", reps: "30 sec / side",url:"https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19"},
+        { name: "Leg Raise Over KB",      sets: "2–3", reps: "10",          url: null },
+      ]},
+    ]
+  },
+  {
+    id: "C", name: "Running Mechanics", dur2: "~38 min", dur3: "~55 min", scheme: "blue",
+    focus: "Running patterns · Hip strength · Ankle stability",
+    subtitle: "Develops movement quality for technical and hilly terrain",
+    sections: [
+      mkWarmup(),
+      { title: "Running-specific strength", dur2: "~18 min", dur3: "~28 min", scheme: "amber", exercises: [
+        { name: "Elevated Split Squat",              sets: "2–3", reps: "10 / side", url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+        { name: "Back Lunge Slides",                 sets: "2–3", reps: "8 / side",  url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+        { name: "Elevated Drop Lunge with MB Reach", sets: "2–3", reps: "8 / side",  url: "https://www.instagram.com/reels/DV1lXNVueSH/" },
+        { name: "Curtsy Knee Tap & Drive",           sets: "2–3", reps: "10 / side", url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+        { name: "Poloquin Lateral Step Downs",       sets: "2–3", reps: "10 / side", url: null },
+        { name: "Sliding Cossacks",                  sets: "2–3", reps: "8 / side",  url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+        { name: "Kickstand Power Cleans",            sets: "2–3", reps: "6 / side",  url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+        { name: "Single-Leg Slider",                 sets: "2–3", reps: "8 / side",  url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+      ]},
+      { title: "Upper body", dur2: "~5 min", dur3: "~8 min", scheme: "pink", exercises: [
+        { name: "KB Frontal Raise + Bicep Curl",  sets: "2–3", reps: "10",        url: "https://www.instagram.com/reels/DWbHop0AcuE/" },
+        { name: "KB Back Lunge with Uppercut",    sets: "2–3", reps: "8 / side",  url: "https://www.instagram.com/reels/DYnBaprIXqY/" },
+      ]},
+      { title: "Core finisher", dur2: "~7 min", dur3: "~11 min", scheme: "blue", exercises: [
+        { name: "In and Out Crunches",        sets: "2–3", reps: "12",           url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+        { name: "Flexor Ankle Ball Hold",     sets: "2–3", reps: "30 sec / side",url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+        { name: "Copenhagen Plank",           sets: "2–3", reps: "20 sec / side",url: "https://www.instagram.com/reels/DSaZQb8ETyE/", optional: true },
+        { name: "Tabletop Plank Knee Touches",sets: "2–3", reps: "12",           url: "https://www.instagram.com/reels/DS682xoDWDC/", optional: true },
+      ]},
+    ]
+  },
 ];
 
-const ROTATION=[{label:"Odd weeks",days:["A","B"]},{label:"Even weeks",days:["A","C"]}];
-let activeIdx=0;
+const ROTATION = [
+  { label: "Odd weeks",  days: ["A", "B"] },
+  { label: "Even weeks", days: ["A", "C"] },
+];
 
-function tickKey(wId,sIdx,eIdx){return`${wId}-${sIdx}-${eIdx}`;}
+// ticked state: key = "wId-sIdx-eIdx"
+const ticked = {};
+let activeIdx = 0;
 
-function toggleTick(wId,sIdx,eIdx){
-  const k=tickKey(wId,sIdx,eIdx);
-  ticked[k]=!ticked[k];
-  render();
+function key(wId, si, ei) { return `${wId}-${si}-${ei}`; }
+
+function countProgress(wk) {
+  let total = 0, done = 0;
+  wk.sections.forEach((sec, si) => sec.exercises.forEach((_, ei) => {
+    total++;
+    if (ticked[key(wk.id, si, ei)]) done++;
+  }));
+  return { total, done };
 }
 
-function secDurLabel(sec){
-  if(sec.fixedDuration) return sec.fixedDuration;
-  return`2 sets: ${sec.dur2} · 3 sets: ${sec.dur3}`;
+function checkSVG() {
+  return `<svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
 
-function checkSVG(){
-  return`<svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function extSVG() {
+  return `<svg class="ext-icon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 2H2C1.44772 2 1 2.44772 1 3V10C1 10.5523 1.44772 11 2 11H9C9.55228 11 10 10.5523 10 10V7M7 1H11M11 1V5M11 1L5.5 6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
 
-function render(){
-  const w=WORKOUTS[activeIdx];
-  const root=document.getElementById("root");
-
-  const tabsHTML=WORKOUTS.map((wk,i)=>{
-    const sc=S[wk.scheme];
-    const isA=activeIdx===i;
-    // count ticked for this workout
-    let total=0,done=0;
-    wk.sections.forEach((sec,si)=>sec.exercises.forEach((_,ei)=>{total++;if(ticked[tickKey(wk.id,si,ei)])done++;}));
-    const prog=total>0?Math.round(done/total*100):0;
-    return`<button class="tab-btn" onclick="setTab(${i})" style="border:${isA?`1.5px solid ${sc.bdr}`:"0.5px solid var(--color-border-tertiary)"};background:${isA?sc.bg:"var(--color-background-primary)"}">
-      <div style="font-size:11px;color:${isA?sc.txt:"var(--color-text-secondary)"};margin-bottom:2px;font-weight:500">Workout ${wk.id}</div>
-      <div style="font-size:13px;font-weight:500;color:${isA?sc.txt:"var(--color-text-primary)"}">${wk.name}</div>
-      <div style="font-size:10px;color:${isA?sc.txt:"var(--color-text-secondary)"};margin-top:3px;opacity:.85;line-height:1.4">2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}</div>
-      ${done>0?`<div style="margin-top:6px;height:3px;border-radius:2px;background:rgba(0,0,0,0.1);overflow:hidden"><div style="height:100%;width:${prog}%;background:${isA?sc.txt:"var(--color-text-secondary)"};opacity:.6;border-radius:2px;transition:width 0.2s"></div></div>`:""}
+function renderTabs() {
+  const row = document.getElementById('tabsRow');
+  row.innerHTML = WORKOUTS.map((wk, i) => {
+    const sc = S[wk.scheme];
+    const { total, done } = countProgress(wk);
+    const prog = total > 0 ? Math.round(done / total * 100) : 0;
+    const isActive = activeIdx === i;
+    return `<button class="tab-btn${isActive ? ' ' + sc.tabActive : ''}" onclick="setTab(${i})">
+      <div class="tab-label">Workout ${wk.id}</div>
+      <div class="tab-name">${wk.name}</div>
+      <div class="tab-dur">2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}</div>
+      ${done > 0 ? `<div class="tab-prog-bar"><div class="tab-prog-fill" style="width:${prog}%;background:${sc.fill}"></div></div>` : ''}
     </button>`;
-  }).join("");
+  }).join('');
+}
 
-  const hsc=S[w.scheme];
-  let wtotal=0,wdone=0;
-  w.sections.forEach((sec,si)=>sec.exercises.forEach((_,ei)=>{wtotal++;if(ticked[tickKey(w.id,si,ei)])wdone++;}));
-  const wprog=wtotal>0?Math.round(wdone/wtotal*100):0;
+function renderMain() {
+  const w = WORKOUTS[activeIdx];
+  const sc = S[w.scheme];
+  const { total, done } = countProgress(w);
+  const prog = total > 0 ? Math.round(done / total * 100) : 0;
 
-  const headerHTML=`<div style="padding:14px 16px;border-radius:var(--border-radius-lg);border:0.5px solid ${hsc.bdr};background:${hsc.bg};margin-bottom:1rem">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
-      <span style="font-size:16px;font-weight:500;color:${hsc.txt}">${w.name}</span>
-      <div style="display:flex;gap:6px;align-items:center">
-        <span style="font-size:11px;color:${hsc.txt};opacity:.85;background:rgba(0,0,0,0.06);padding:2px 8px;border-radius:20px">2 sets: ${w.dur2}</span>
-        <span style="font-size:11px;color:${hsc.txt};opacity:.85;background:rgba(0,0,0,0.06);padding:2px 8px;border-radius:20px">3 sets: ${w.dur3}</span>
+  // workout header
+  let headerHTML = `<div class="wk-header ${sc.cls}">
+    <div class="wk-header-top">
+      <div class="wk-header-name">${w.name}</div>
+      <div class="dur-pills">
+        <span class="dur-pill">2 sets: ${w.dur2}</span>
+        <span class="dur-pill">3 sets: ${w.dur3}</span>
       </div>
     </div>
-    <div style="font-size:13px;color:${hsc.txt};margin-top:4px;opacity:.85">${w.focus}</div>
-    <div style="font-size:12px;color:${hsc.txt};margin-top:4px;opacity:.7;font-style:italic">${w.subtitle}</div>
-    ${wdone>0?`<div style="margin-top:10px">
-      <div style="display:flex;justify-content:space-between;font-size:11px;color:${hsc.txt};opacity:.75;margin-bottom:4px"><span>Progress</span><span>${wdone} / ${wtotal} exercises</span></div>
-      <div style="height:4px;border-radius:2px;background:rgba(0,0,0,0.12);overflow:hidden"><div style="height:100%;width:${wprog}%;background:${hsc.txt};opacity:.5;border-radius:2px;transition:width 0.2s"></div></div>
-    </div>`:""}
+    <div class="wk-focus">${w.focus}</div>
+    <div class="wk-subtitle">${w.subtitle}</div>
+    ${done > 0 ? `<div class="wk-progress">
+      <div class="wk-prog-label"><span>Progress</span><span>${done} / ${total} exercises</span></div>
+      <div class="wk-prog-track"><div class="wk-prog-fill" style="width:${prog}%"></div></div>
+    </div>` : ''}
   </div>`;
 
-  const sectionsHTML=w.sections.map((sec,si)=>{
-    const sc=S[sec.scheme];
-    const durLabel=secDurLabel(sec);
-    const secDone=sec.exercises.filter((_,ei)=>ticked[tickKey(w.id,si,ei)]).length;
-    const secTotal=sec.exercises.length;
-    const rows=sec.exercises.map((ex,ei)=>{
-      const k=tickKey(w.id,si,ei);
-      const isDone=!!ticked[k];
-      const nameEl=ex.url
-        ?`<a href="${ex.url}" class="ex-link" onclick="event.stopPropagation()">${ex.name}<i class="ti ti-external-link" style="font-size:11px;color:var(--color-text-tertiary)" aria-hidden="true"></i></a>`
-        :`<span class="exname" style="font-size:13px;color:var(--color-text-primary)">${ex.name}</span>`;
-      const optBadge=ex.optional?`<span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary);white-space:nowrap;flex-shrink:0">optional</span>`:"";
-      const borderBottom=ei<sec.exercises.length-1?"0.5px solid var(--color-border-tertiary)":"none";
-      return`<div class="ex-row" style="border-bottom:${borderBottom};${isDone?"opacity:.7":""}" onclick="toggleTick('${w.id}',${si},${ei})">
-        <div class="tick-box${isDone?" checked":""}">${checkSVG()}</div>
-        <div class="ex-name-wrap${isDone?" done":""}">${nameEl}${optBadge}</div>
-        <span style="font-size:12px;color:var(--color-text-secondary);white-space:nowrap;flex-shrink:0">${ex.sets} sets × ${ex.reps}</span>
+  // sections
+  let sectionsHTML = '<div class="sections">';
+  w.sections.forEach((sec, si) => {
+    const ssc = S[sec.scheme];
+    const secDone = sec.exercises.filter((_, ei) => ticked[key(w.id, si, ei)]).length;
+    const secTotal = sec.exercises.length;
+    const durLabel = sec.fixedDuration
+      ? sec.fixedDuration
+      : `2 sets: ${sec.dur2} · 3 sets: ${sec.dur3}`;
+
+    let badge = '';
+    if (secDone === secTotal && secTotal > 0)
+      badge = `<span class="sec-badge sec-badge-done">✓ done</span>`;
+    else if (secDone > 0)
+      badge = `<span class="sec-badge sec-badge-count">${secDone}/${secTotal}</span>`;
+
+    const rows = sec.exercises.map((ex, ei) => {
+      const k = key(w.id, si, ei);
+      const isDone = !!ticked[k];
+      const nameEl = ex.url
+        ? `<a class="ex-link" href="${ex.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${ex.name}${extSVG()}</a>`
+        : `<span class="ex-name-plain">${ex.name}</span>`;
+      const optBadge = ex.optional ? `<span class="opt-badge">optional</span>` : '';
+      return `<div class="ex-row${isDone ? ' done' : ''}" onclick="toggle('${w.id}',${si},${ei})">
+        <div class="tick-box${isDone ? ' checked' : ''}">${checkSVG()}</div>
+        <div class="ex-info">${nameEl}${optBadge}</div>
+        <span class="ex-sets">${ex.sets} sets × ${ex.reps}</span>
       </div>`;
-    }).join("");
-    const secProgress=secDone===secTotal&&secTotal>0?`<span style="font-size:10px;padding:1px 7px;border-radius:20px;background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)">✓ done</span>`
-      :secDone>0?`<span style="font-size:11px;color:var(--color-text-secondary)">${secDone}/${secTotal}</span>`:"";
-    return`<div style="border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);overflow:hidden">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px 8px 11px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:3px solid ${sc.bdr};background:var(--color-background-secondary);gap:8px;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:13px;font-weight:500;color:${sc.txt}">${sec.title}</span>
-          ${secProgress}
+    }).join('');
+
+    sectionsHTML += `<div class="section">
+      <div class="sec-header ${ssc.secCls}">
+        <div class="sec-header-left">
+          <div class="sec-accent"></div>
+          <span class="sec-title">${sec.title}</span>
+          ${badge}
         </div>
-        <span style="font-size:11px;color:var(--color-text-secondary);white-space:nowrap">${durLabel}</span>
+        <span class="sec-dur">${durLabel}</span>
       </div>
       ${rows}
     </div>`;
-  }).join("");
+  });
+  sectionsHTML += '</div>';
 
-  const rotHTML=ROTATION.map(r=>{
-    const pills=r.days.map(d=>{
-      const wk=WORKOUTS.find(x=>x.id===d);
-      const sc=S[wk.scheme];
-      return`<span style="font-size:13px;font-weight:500;padding:2px 10px;border-radius:var(--border-radius-md);background:${sc.bg};color:${sc.txt};border:0.5px solid ${sc.bdr}">${d}</span>`;
-    }).join("");
-    return`<div style="padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);text-align:center">
-      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px">${r.label}</div>
-      <div style="display:flex;justify-content:center;gap:5px">${pills}</div>
-    </div>`;
-  }).join("");
+  // rest note
+  const restHTML = `<div class="rest-note">
+    <strong>Rest:</strong> 90–120 sec between sets on plyometrics &nbsp;·&nbsp; 60–90 sec on strength &nbsp;·&nbsp; 30–45 sec on core
+  </div>`;
 
-  root.innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1.25rem">${tabsHTML}</div>
-    ${headerHTML}
-    <div style="display:flex;flex-direction:column;gap:10px">${sectionsHTML}</div>
-    <div style="margin-top:10px;padding:10px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)">
-      <span style="font-size:12px;color:var(--color-text-secondary)"><strong style="font-weight:500;color:var(--color-text-primary)">Rest:</strong> 90–120 sec between sets on plyometrics · 60–90 sec on strength · 30–45 sec on core</span>
+  // rotation
+  const rotHTML = `<div class="rotation-block">
+    <div class="rotation-title">Weekly Rotation</div>
+    <div class="rotation-grid">
+      ${ROTATION.map(r => {
+        const pills = r.days.map(d => {
+          const wk = WORKOUTS.find(x => x.id === d);
+          return `<span class="rot-pill ${S[wk.scheme].pillCls}">${d}</span>`;
+        }).join('');
+        return `<div class="rot-cell">
+          <div class="rot-label">${r.label}</div>
+          <div class="rot-pills">${pills}</div>
+        </div>`;
+      }).join('')}
     </div>
-    <div style="margin-top:1.25rem;padding:14px 16px;border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary)">
-      <div style="font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px">Weekly rotation</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${rotHTML}</div>
-      <div style="font-size:12px;color:var(--color-text-tertiary);margin-top:10px;line-height:1.5">A every week. Alternate B and C for your longer session. Once comfortable, rotate all three: A+B → A+C → B+C.</div>
-    </div>`;
+    <div class="rotation-note">
+      Workout A every week. Alternate B and C for your longer session.<br>
+      Once comfortable, rotate all three: A+B → A+C → B+C.
+    </div>
+  </div>`;
+
+  // reset
+  const resetHTML = `<button class="reset-btn" onclick="resetTicks()">Reset session</button>`;
+
+  document.getElementById('main').innerHTML = headerHTML + sectionsHTML + restHTML + rotHTML + resetHTML;
 }
 
-window.setTab=function(i){activeIdx=i;render()};
+function render() { renderTabs(); renderMain(); }
+
+window.setTab = function(i) { activeIdx = i; render(); };
+window.toggle = function(wId, si, ei) {
+  const k = key(wId, si, ei);
+  ticked[k] = !ticked[k];
+  render();
+};
+window.resetTicks = function() {
+  const w = WORKOUTS[activeIdx];
+  w.sections.forEach((sec, si) => sec.exercises.forEach((_, ei) => {
+    delete ticked[key(w.id, si, ei)];
+  }));
+  render();
+};
+
 render();
 </script>
+</body>
+</html>
