@@ -36,6 +36,10 @@
     --pink-bg:   #1f0e14;
     --pink-bdr:  #3d1a24;
 
+    --violet:     #a78bfa;
+    --violet-bg:  #130f1e;
+    --violet-bdr: #2a1f45;
+
     --radius:    10px;
     --font-display: 'Barlow Condensed', sans-serif;
     --font-body:    'Barlow', sans-serif;
@@ -80,7 +84,7 @@
   /* ── TABS ── */
   .tabs-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
     padding: 16px 24px;
     background: var(--bg);
@@ -105,6 +109,7 @@
   .tab-btn.active-amber { border-color: var(--amber-bdr); background: var(--amber-bg); }
   .tab-btn.active-teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
   .tab-btn.active-blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
+  .tab-btn.active-violet{ border-color: var(--violet-bdr);background: var(--violet-bg);}
 
   .tab-label {
     font-family: var(--font-display);
@@ -118,6 +123,8 @@
   .tab-btn.active-amber .tab-label { color: var(--amber); }
   .tab-btn.active-teal  .tab-label { color: var(--teal);  }
   .tab-btn.active-blue  .tab-label { color: var(--blue);  }
+  .tab-btn.active-violet.tab-label { color: var(--violet);}
+  .tab-btn.active-violet .tab-label{ color: var(--violet);}
 
   .tab-name {
     font-family: var(--font-display);
@@ -139,6 +146,8 @@
   .tab-btn.active-teal  .tab-name { color: var(--teal);  }
   .tab-btn.active-blue  .tab-dur,
   .tab-btn.active-blue  .tab-name { color: var(--blue);  }
+  .tab-btn.active-violet .tab-dur,
+  .tab-btn.active-violet .tab-name{ color: var(--violet);}
 
   .tab-prog-bar {
     height: 2px;
@@ -166,6 +175,7 @@
   .wk-header.amber { border-color: var(--amber-bdr); background: var(--amber-bg); }
   .wk-header.teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
   .wk-header.blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
+  .wk-header.violet{ border-color: var(--violet-bdr);background: var(--violet-bg);}
 
   .wk-header-top {
     display: flex;
@@ -184,6 +194,8 @@
   .wk-header.amber .wk-header-name { color: var(--amber); }
   .wk-header.teal  .wk-header-name { color: var(--teal);  }
   .wk-header.blue  .wk-header-name { color: var(--blue);  }
+  .wk-header.violet.wk-header-name { color: var(--violet);}
+  .wk-header.violet .wk-header-name{ color: var(--violet);}
 
   .dur-pills { display: flex; gap: 6px; flex-wrap: wrap; }
   .dur-pill {
@@ -198,6 +210,7 @@
   .wk-header.amber .dur-pill { color: var(--amber); background: rgba(245,166,35,0.08); border-color: var(--amber-bdr); }
   .wk-header.teal  .dur-pill { color: var(--teal);  background: rgba(62,207,142,0.08); border-color: var(--teal-bdr); }
   .wk-header.blue  .dur-pill { color: var(--blue);  background: rgba(77,166,255,0.08); border-color: var(--blue-bdr); }
+  .wk-header.violet .dur-pill{ color: var(--violet);background: rgba(167,139,250,0.08);border-color: var(--violet-bdr);}
 
   .wk-focus {
     font-size: 13px;
@@ -234,6 +247,7 @@
   .amber .wk-prog-fill { background: var(--amber); }
   .teal  .wk-prog-fill { background: var(--teal);  }
   .blue  .wk-prog-fill { background: var(--blue);  }
+  .violet .wk-prog-fill{ background: var(--violet);}
 
   /* ── SECTIONS ── */
   .sections { display: flex; flex-direction: column; gap: 12px; }
@@ -271,6 +285,8 @@
   .sec-blue  .sec-title  { color: var(--blue); }
   .sec-pink  .sec-accent { background: var(--pink); }
   .sec-pink  .sec-title  { color: var(--pink); }
+  .sec-violet .sec-accent{ background: var(--violet);}
+  .sec-violet .sec-title { color: var(--violet);}
 
   .sec-dur { font-size: 11px; color: var(--text3); white-space: nowrap; }
   .sec-badge {
@@ -411,6 +427,54 @@
   .rot-pill-amber { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-bdr); }
   .rot-pill-teal  { background: var(--teal-bg);  color: var(--teal);  border-color: var(--teal-bdr);  }
   .rot-pill-blue  { background: var(--blue-bg);  color: var(--blue);  border-color: var(--blue-bdr);  }
+  .rot-pill-violet{ background: var(--violet-bg);color: var(--violet);border-color: var(--violet-bdr);}
+
+  .iso-callout {
+    background: var(--violet-bg);
+    border: 1px solid var(--violet-bdr);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .iso-callout-title {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 8px;
+  }
+  .iso-callout ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .iso-callout li {
+    font-size: 12px;
+    color: var(--text3);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .iso-callout li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--violet);
+  }
+  .iso-rest-note {
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: var(--violet-bg);
+    border: 1px solid var(--violet-bdr);
+    border-radius: var(--radius);
+    font-size: 12px;
+    color: var(--text3);
+    line-height: 1.6;
+  }
+  .iso-rest-note strong { color: var(--violet); font-weight: 500; }
   .rotation-note {
     font-size: 12px;
     color: var(--text3);
@@ -449,7 +513,7 @@
 
 <header class="site-header">
   <h1>Trail Running <span>Strength Plan</span></h1>
-  <p>3 rotating workouts · 2 sessions per week · Intermediate</p>
+  <p>3 rotating workouts + 1 recovery session · 2 sessions per week · Intermediate</p>
 </header>
 
 <div class="tabs-row" id="tabsRow"></div>
@@ -458,10 +522,11 @@
 
 <script>
 const S = {
-  amber: { cls: 'amber', txt: 'var(--amber)', bdr: 'var(--amber-bdr)', bg: 'var(--amber-bg)', fill: 'var(--amber)', tabActive: 'active-amber', secCls: 'sec-amber', pillCls: 'rot-pill-amber' },
-  teal:  { cls: 'teal',  txt: 'var(--teal)',  bdr: 'var(--teal-bdr)',  bg: 'var(--teal-bg)',  fill: 'var(--teal)',  tabActive: 'active-teal',  secCls: 'sec-teal',  pillCls: 'rot-pill-teal'  },
-  blue:  { cls: 'blue',  txt: 'var(--blue)',  bdr: 'var(--blue-bdr)',  bg: 'var(--blue-bg)',  fill: 'var(--blue)',  tabActive: 'active-blue',  secCls: 'sec-blue',  pillCls: 'rot-pill-blue'  },
-  pink:  { cls: 'pink',  txt: 'var(--pink)',  bdr: 'var(--pink-bdr)',  bg: 'var(--pink-bg)',  fill: 'var(--pink)',  tabActive: 'active-pink',  secCls: 'sec-pink',  pillCls: 'rot-pill-pink'  },
+  amber:  { cls: 'amber',  txt: 'var(--amber)',  bdr: 'var(--amber-bdr)',  bg: 'var(--amber-bg)',  fill: 'var(--amber)',  tabActive: 'active-amber',  secCls: 'sec-amber',  pillCls: 'rot-pill-amber'  },
+  teal:   { cls: 'teal',   txt: 'var(--teal)',   bdr: 'var(--teal-bdr)',   bg: 'var(--teal-bg)',   fill: 'var(--teal)',   tabActive: 'active-teal',   secCls: 'sec-teal',   pillCls: 'rot-pill-teal'   },
+  blue:   { cls: 'blue',   txt: 'var(--blue)',   bdr: 'var(--blue-bdr)',   bg: 'var(--blue-bg)',   fill: 'var(--blue)',   tabActive: 'active-blue',   secCls: 'sec-blue',   pillCls: 'rot-pill-blue'   },
+  pink:   { cls: 'pink',   txt: 'var(--pink)',   bdr: 'var(--pink-bdr)',   bg: 'var(--pink-bg)',   fill: 'var(--pink)',   tabActive: 'active-pink',   secCls: 'sec-pink',   pillCls: 'rot-pill-pink'   },
+  violet: { cls: 'violet', txt: 'var(--violet)', bdr: 'var(--violet-bdr)', bg: 'var(--violet-bg)', fill: 'var(--violet)', tabActive: 'active-violet', secCls: 'sec-violet', pillCls: 'rot-pill-violet' },
 };
 
 const WARMUP_EX = [
@@ -555,6 +620,23 @@ const WORKOUTS = [
       ]},
     ]
   },
+  {
+    id: "D", name: "Isometric Recovery", dur2: "~13 min", dur3: "~20 min", scheme: "violet",
+    focus: "Tendon reloading · Pain sensitivity · Stiffness restoration",
+    subtitle: "Use after big efforts — slow, controlled holds that rebuild without adding stress",
+    isRecovery: true,
+    sections: [
+      { title: "Isometric Holds", fixedDuration: "3 sets × 20–30 sec", scheme: "violet", exercises: [
+        { name: "KB Wall Sits",          sets: 3, reps: "20–30 sec hold",        url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "KB SL Wall Sit",        sets: 3, reps: "20–30 sec / side",      url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "KB Calf Raise Hold",    sets: 3, reps: "20–30 sec hold",        url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "KB Soleus Hold",        sets: 3, reps: "20–30 sec hold",        url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "KB Lunge Hold",         sets: 3, reps: "20–30 sec / side",      url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "RB Fire Hydrant Hold",  sets: 3, reps: "20–30 sec / side",      url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+        { name: "SL Glute Bridge",       sets: 3, reps: "20–30 sec / side",      url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
+      ]},
+    ]
+  },
 ];
 
 const ROTATION = [
@@ -595,7 +677,7 @@ function renderTabs() {
     return `<button class="tab-btn${isActive ? ' ' + sc.tabActive : ''}" onclick="setTab(${i})">
       <div class="tab-label">Workout ${wk.id}</div>
       <div class="tab-name">${wk.name}</div>
-      <div class="tab-dur">2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}</div>
+      <div class="tab-dur">${wk.singleDur ? wk.singleDur : `2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}`}</div>
       ${done > 0 ? `<div class="tab-prog-bar"><div class="tab-prog-fill" style="width:${prog}%;background:${sc.fill}"></div></div>` : ''}
     </button>`;
   }).join('');
@@ -608,13 +690,14 @@ function renderMain() {
   const prog = total > 0 ? Math.round(done / total * 100) : 0;
 
   // workout header
+  const durPills = w.singleDur
+    ? `<span class="dur-pill">${w.singleDur}</span>`
+    : `<span class="dur-pill">2 sets: ${w.dur2}</span><span class="dur-pill">3 sets: ${w.dur3}</span>`;
+
   let headerHTML = `<div class="wk-header ${sc.cls}">
     <div class="wk-header-top">
       <div class="wk-header-name">${w.name}</div>
-      <div class="dur-pills">
-        <span class="dur-pill">2 sets: ${w.dur2}</span>
-        <span class="dur-pill">3 sets: ${w.dur3}</span>
-      </div>
+      <div class="dur-pills">${durPills}</div>
     </div>
     <div class="wk-focus">${w.focus}</div>
     <div class="wk-subtitle">${w.subtitle}</div>
@@ -623,6 +706,8 @@ function renderMain() {
       <div class="wk-prog-track"><div class="wk-prog-fill" style="width:${prog}%"></div></div>
     </div>` : ''}
   </div>`;
+
+  const isoCallout = '';
 
   // sections
   let sectionsHTML = '<div class="sections">';
@@ -668,36 +753,44 @@ function renderMain() {
   });
   sectionsHTML += '</div>';
 
-  // rest note
-  const restHTML = `<div class="rest-note">
-    <strong>Rest:</strong> 90–120 sec between sets on plyometrics &nbsp;·&nbsp; 60–90 sec on strength &nbsp;·&nbsp; 30–45 sec on core
-  </div>`;
+  // rest note — contextual
+  const restHTML = w.isRecovery
+    ? `<div class="iso-rest-note"><strong>Pacing:</strong> 45–60 sec rest between sets &nbsp;·&nbsp; Breathe steadily through each hold &nbsp;·&nbsp; No bouncing or compensating &nbsp;·&nbsp; Stop if sharp pain</div>`
+    : `<div class="rest-note"><strong>Rest:</strong> 90–120 sec between sets on plyometrics &nbsp;·&nbsp; 60–90 sec on strength &nbsp;·&nbsp; 30–45 sec on core</div>`;
 
-  // rotation
-  const rotHTML = `<div class="rotation-block">
-    <div class="rotation-title">Weekly Rotation</div>
-    <div class="rotation-grid">
-      ${ROTATION.map(r => {
-        const pills = r.days.map(d => {
-          const wk = WORKOUTS.find(x => x.id === d);
-          return `<span class="rot-pill ${S[wk.scheme].pillCls}">${d}</span>`;
-        }).join('');
-        return `<div class="rot-cell">
-          <div class="rot-label">${r.label}</div>
-          <div class="rot-pills">${pills}</div>
-        </div>`;
-      }).join('')}
-    </div>
-    <div class="rotation-note">
-      Workout A every week. Alternate B and C for your longer session.<br>
-      Once comfortable, rotate all three: A+B → A+C → B+C.
-    </div>
-  </div>`;
+  // rotation — hide for workout D, show a use-when note instead
+  const rotHTML = w.isRecovery
+    ? `<div class="rotation-block">
+        <div class="rotation-title">When to use this session</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7">
+          Use Workout D the day after a race, long run, or any session that left your legs feeling heavy and your tendons stiff.
+          It is <em>not</em> part of the weekly A/B/C rotation — think of it as a tool you reach for when recovery demands it.
+        </div>
+      </div>`
+    : `<div class="rotation-block">
+        <div class="rotation-title">Weekly Rotation</div>
+        <div class="rotation-grid">
+          ${ROTATION.map(r => {
+            const pills = r.days.map(d => {
+              const wk = WORKOUTS.find(x => x.id === d);
+              return `<span class="rot-pill ${S[wk.scheme].pillCls}">${d}</span>`;
+            }).join('');
+            return `<div class="rot-cell">
+              <div class="rot-label">${r.label}</div>
+              <div class="rot-pills">${pills}</div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div class="rotation-note">
+          Workout A every week. Alternate B and C for your longer session.<br>
+          Once comfortable, rotate all three: A+B → A+C → B+C.
+        </div>
+      </div>`;
 
   // reset
   const resetHTML = `<button class="reset-btn" onclick="resetTicks()">Reset session</button>`;
 
-  document.getElementById('main').innerHTML = headerHTML + sectionsHTML + restHTML + rotHTML + resetHTML;
+  document.getElementById('main').innerHTML = headerHTML + isoCallout + sectionsHTML + restHTML + rotHTML + resetHTML;
 }
 
 function render() { renderTabs(); renderMain(); }
