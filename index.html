@@ -545,7 +545,7 @@ function mkWarmup() {
 
 const WORKOUTS = [
   {
-    id: "A", name: "Power & Plyo", dur2: "~35 min", dur3: "~49 min", scheme: "amber",
+    id: "A", name: "Power & Plyometrics", dur2: "~35 min", dur3: "~49 min", scheme: "amber",
     focus: "Explosive power · Lateral stability · Reactive strength",
     subtitle: "Builds fast-twitch power and reactive strength for technical terrain",
     sections: [
@@ -568,7 +568,7 @@ const WORKOUTS = [
     ]
   },
   {
-    id: "B", name: "Strength & Upper Body", dur2: "~34 min", dur3: "~49 min", scheme: "teal",
+    id: "B", name: "Strength Foundation", dur2: "~34 min", dur3: "~49 min", scheme: "teal",
     focus: "Unilateral strength · Hip stability · Upper body",
     subtitle: "Builds the leg strength needed for sustained climbs and descents",
     sections: [
@@ -621,11 +621,12 @@ const WORKOUTS = [
     ]
   },
   {
-    id: "D", name: "Isometric Recovery", dur2: "~13 min", dur3: "~20 min", scheme: "violet",
+    id: "D", name: "Isometric Recovery", dur2: "~22 min", dur3: "~29 min", scheme: "violet",
     focus: "Tendon reloading · Pain sensitivity · Stiffness restoration",
     subtitle: "Use after big efforts — slow, controlled holds that rebuild without adding stress",
     isRecovery: true,
     sections: [
+      mkWarmup(),
       { title: "Isometric Holds", fixedDuration: "3 sets × 20–30 sec", scheme: "violet", exercises: [
         { name: "KB Wall Sits",          sets: 3, reps: "20–30 sec hold",        url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
         { name: "KB SL Wall Sit",        sets: 3, reps: "20–30 sec / side",      url: "https://www.instagram.com/reels/DXKB2wGgBnM/" },
