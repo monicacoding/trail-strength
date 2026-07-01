@@ -40,6 +40,10 @@
     --violet-bg:  #130f1e;
     --violet-bdr: #2a1f45;
 
+    --gold:     #f0c040;
+    --gold-bg:  #1a1500;
+    --gold-bdr: #3a2e00;
+
     --radius:    10px;
     --font-display: 'Barlow Condensed', sans-serif;
     --font-body:    'Barlow', sans-serif;
@@ -84,7 +88,7 @@
   /* ── TABS ── */
   .tabs-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 16px 24px;
     background: var(--bg);
@@ -110,6 +114,8 @@
   .tab-btn.active-teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
   .tab-btn.active-blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
   .tab-btn.active-violet{ border-color: var(--violet-bdr);background: var(--violet-bg);}
+  .tab-btn.active-pink  { border-color: var(--pink-bdr);  background: var(--pink-bg);  }
+  .tab-btn.active-gold  { border-color: var(--gold-bdr);  background: var(--gold-bg);  }
 
   .tab-label {
     font-family: var(--font-display);
@@ -125,6 +131,8 @@
   .tab-btn.active-blue  .tab-label { color: var(--blue);  }
   .tab-btn.active-violet.tab-label { color: var(--violet);}
   .tab-btn.active-violet .tab-label{ color: var(--violet);}
+  .tab-btn.active-pink   .tab-label{ color: var(--pink);  }
+  .tab-btn.active-gold   .tab-label{ color: var(--gold);  }
 
   .tab-name {
     font-family: var(--font-display);
@@ -148,6 +156,10 @@
   .tab-btn.active-blue  .tab-name { color: var(--blue);  }
   .tab-btn.active-violet .tab-dur,
   .tab-btn.active-violet .tab-name{ color: var(--violet);}
+  .tab-btn.active-pink   .tab-dur,
+  .tab-btn.active-pink   .tab-name{ color: var(--pink);  }
+  .tab-btn.active-gold   .tab-dur,
+  .tab-btn.active-gold   .tab-name{ color: var(--gold);  }
 
   .tab-prog-bar {
     height: 2px;
@@ -176,6 +188,8 @@
   .wk-header.teal  { border-color: var(--teal-bdr);  background: var(--teal-bg);  }
   .wk-header.blue  { border-color: var(--blue-bdr);  background: var(--blue-bg);  }
   .wk-header.violet{ border-color: var(--violet-bdr);background: var(--violet-bg);}
+  .wk-header.pink  { border-color: var(--pink-bdr);  background: var(--pink-bg);  }
+  .wk-header.gold  { border-color: var(--gold-bdr);  background: var(--gold-bg);  }
 
   .wk-header-top {
     display: flex;
@@ -196,6 +210,8 @@
   .wk-header.blue  .wk-header-name { color: var(--blue);  }
   .wk-header.violet.wk-header-name { color: var(--violet);}
   .wk-header.violet .wk-header-name{ color: var(--violet);}
+  .wk-header.pink   .wk-header-name{ color: var(--pink);  }
+  .wk-header.gold   .wk-header-name{ color: var(--gold);  }
 
   .dur-pills { display: flex; gap: 6px; flex-wrap: wrap; }
   .dur-pill {
@@ -211,6 +227,8 @@
   .wk-header.teal  .dur-pill { color: var(--teal);  background: rgba(62,207,142,0.08); border-color: var(--teal-bdr); }
   .wk-header.blue  .dur-pill { color: var(--blue);  background: rgba(77,166,255,0.08); border-color: var(--blue-bdr); }
   .wk-header.violet .dur-pill{ color: var(--violet);background: rgba(167,139,250,0.08);border-color: var(--violet-bdr);}
+  .wk-header.pink   .dur-pill{ color: var(--pink);  background: rgba(240,98,146,0.08); border-color: var(--pink-bdr);  }
+  .wk-header.gold   .dur-pill{ color: var(--gold);  background: rgba(240,192,64,0.08); border-color: var(--gold-bdr);  }
 
   .wk-focus {
     font-size: 13px;
@@ -248,6 +266,8 @@
   .teal  .wk-prog-fill { background: var(--teal);  }
   .blue  .wk-prog-fill { background: var(--blue);  }
   .violet .wk-prog-fill{ background: var(--violet);}
+  .pink   .wk-prog-fill{ background: var(--pink);  }
+  .gold   .wk-prog-fill{ background: var(--gold);  }
 
   /* ── SECTIONS ── */
   .sections { display: flex; flex-direction: column; gap: 12px; }
@@ -428,6 +448,96 @@
   .rot-pill-teal  { background: var(--teal-bg);  color: var(--teal);  border-color: var(--teal-bdr);  }
   .rot-pill-blue  { background: var(--blue-bg);  color: var(--blue);  border-color: var(--blue-bdr);  }
   .rot-pill-violet{ background: var(--violet-bg);color: var(--violet);border-color: var(--violet-bdr);}
+  .rot-pill-pink  { background: var(--pink-bg);  color: var(--pink);  border-color: var(--pink-bdr);  }
+  .rot-pill-gold  { background: var(--gold-bg);  color: var(--gold);  border-color: var(--gold-bdr);  }
+
+  /* ── BENCHMARK ── */
+  .bm-intro {
+    font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 16px;
+    padding: 12px 16px; background: var(--gold-bg); border: 1px solid var(--gold-bdr);
+    border-radius: var(--radius);
+  }
+  .bm-tests { display: flex; flex-direction: column; gap: 10px; }
+  .bm-test {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .bm-test-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px 9px 11px; background: var(--bg3);
+    border-bottom: 1px solid var(--border); border-left: 3px solid var(--gold); gap: 8px;
+  }
+  .bm-test-num {
+    font-family: var(--font-display); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 1px;
+  }
+  .bm-test-name {
+    font-family: var(--font-display); font-size: 14px; font-weight: 600;
+    color: var(--text); letter-spacing: 0.02em;
+  }
+  .bm-target {
+    font-size: 11px; color: var(--gold); white-space: nowrap;
+    background: rgba(240,192,64,0.08); border: 1px solid var(--gold-bdr);
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .bm-body { padding: 12px 14px; }
+  .bm-desc { font-size: 12px; color: var(--text3); line-height: 1.6; margin-bottom: 10px; }
+  .bm-inputs { display: flex; gap: 10px; flex-wrap: wrap; }
+  .bm-input-group { display: flex; flex-direction: column; gap: 4px; min-width: 100px; }
+  .bm-input-label { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; text-transform: uppercase; }
+  .bm-input {
+    background: var(--bg); border: 1px solid var(--border2); border-radius: 6px;
+    color: var(--text); font-family: var(--font-body); font-size: 14px;
+    padding: 7px 10px; width: 110px; transition: border-color 0.15s;
+    -moz-appearance: textfield;
+  }
+  .bm-input::-webkit-outer-spin-button,
+  .bm-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .bm-input:focus { outline: none; border-color: var(--gold); }
+  .bm-input::placeholder { color: var(--text3); }
+  .bm-save-row {
+    margin-top: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .bm-date-input {
+    background: var(--bg); border: 1px solid var(--border2); border-radius: 6px;
+    color: var(--text); font-family: var(--font-body); font-size: 13px;
+    padding: 7px 10px; transition: border-color 0.15s;
+  }
+  .bm-date-input:focus { outline: none; border-color: var(--gold); }
+  .bm-save-btn {
+    background: var(--gold-bg); border: 1px solid var(--gold-bdr); color: var(--gold);
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 20px;
+    border-radius: var(--radius); cursor: pointer; transition: background 0.15s;
+  }
+  .bm-save-btn:hover { background: rgba(240,192,64,0.15); }
+  .bm-history {
+    margin-top: 20px; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .bm-history-title {
+    font-family: var(--font-display); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--text2);
+    padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--bg3);
+  }
+  .bm-history-empty { font-size: 13px; color: var(--text3); padding: 16px 14px; font-style: italic; }
+  .bm-history-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .bm-history-table th {
+    text-align: left; padding: 8px 12px; color: var(--text3); font-weight: 500;
+    border-bottom: 1px solid var(--border); background: var(--bg3);
+    font-family: var(--font-display); letter-spacing: 0.05em; font-size: 11px;
+  }
+  .bm-history-table td {
+    padding: 8px 12px; color: var(--text2); border-bottom: 1px solid var(--border);
+  }
+  .bm-history-table tr:last-child td { border-bottom: none; }
+  .bm-history-table tr:hover td { background: var(--bg3); }
+  .bm-delete-btn {
+    background: none; border: none; color: var(--text3); cursor: pointer;
+    font-size: 12px; padding: 2px 6px; border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .bm-delete-btn:hover { color: var(--pink); }
 
   .iso-callout {
     background: var(--violet-bg);
@@ -513,7 +623,7 @@
 
 <header class="site-header">
   <h1>Trail Running <span>Strength Plan</span></h1>
-  <p>3 rotating workouts + 1 recovery session · 2 sessions per week · Intermediate</p>
+  <p>3 rotating workouts · 2 on-demand sessions · 1 quarterly benchmark · Intermediate</p>
 </header>
 
 <div class="tabs-row" id="tabsRow"></div>
@@ -527,6 +637,7 @@ const S = {
   blue:   { cls: 'blue',   txt: 'var(--blue)',   bdr: 'var(--blue-bdr)',   bg: 'var(--blue-bg)',   fill: 'var(--blue)',   tabActive: 'active-blue',   secCls: 'sec-blue',   pillCls: 'rot-pill-blue'   },
   pink:   { cls: 'pink',   txt: 'var(--pink)',   bdr: 'var(--pink-bdr)',   bg: 'var(--pink-bg)',   fill: 'var(--pink)',   tabActive: 'active-pink',   secCls: 'sec-pink',   pillCls: 'rot-pill-pink'   },
   violet: { cls: 'violet', txt: 'var(--violet)', bdr: 'var(--violet-bdr)', bg: 'var(--violet-bg)', fill: 'var(--violet)', tabActive: 'active-violet', secCls: 'sec-violet', pillCls: 'rot-pill-violet' },
+  gold:   { cls: 'gold',   txt: 'var(--gold)',   bdr: 'var(--gold-bdr)',   bg: 'var(--gold-bg)',   fill: 'var(--gold)',   tabActive: 'active-gold',   secCls: 'sec-gold',   pillCls: 'rot-pill-gold'   },
 };
 
 const WARMUP_EX = [
@@ -536,11 +647,10 @@ const WARMUP_EX = [
   { name: "Bent Knee Calf Raises",                     sets: 2, reps: "15",        url: "https://www.instagram.com/reels/DUV4cKzjwQT/" },
   { name: "High Ups",                                  sets: 2, reps: "8",         url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
   { name: "Wall Calf Raise + Hip Flexion RB Iso",      sets: 2, reps: "per side",  url: "https://www.instagram.com/reels/DY2-A_Mv9-c/" },
-  { name: "Pogo Jumps",                                sets: 2, reps: "20",        url: null },
 ];
 
 function mkWarmup() {
-  return { title: "Warm-up", fixedDuration: "~9 min (2 sets)", scheme: "teal", exercises: WARMUP_EX };
+  return { title: "Warm-up", fixedDuration: "~8 min (2 sets)", scheme: "teal", exercises: WARMUP_EX };
 }
 
 const WORKOUTS = [
@@ -638,7 +748,74 @@ const WORKOUTS = [
       ]},
     ]
   },
+  {
+    id: "E", name: "Upper Body & Core", dur2: "~30 min", dur3: "~44 min", scheme: "pink",
+    focus: "Push · Pull · Core stability",
+    subtitle: "Zero leg load — for days when the legs need full rest",
+    isUpperOnly: true,
+    sections: [
+      { title: "Upper body — Push", dur2: "~8 min", dur3: "~12 min", scheme: "pink", exercises: [
+        { name: "Half Kneeling DB Shoulder Press", sets: "2–3", reps: "10 / side", url: "https://www.youtube.com/watch?v=sp4R3g1tRh0" },
+        { name: "KB Frontal Raise + Bicep Curl",   sets: "2–3", reps: "10",        url: "https://www.instagram.com/reels/DWbHop0AcuE/" },
+      ]},
+      { title: "Upper body — Pull", dur2: "~8 min", dur3: "~12 min", scheme: "blue", exercises: [
+        { name: "KB Hammer Rows",  sets: "2–3", reps: "10 / side", url: null },
+        { name: "Bird Dog Row",    sets: "2–3", reps: "10 / side", url: "https://www.youtube.com/watch?v=sp4R3g1tRh0" },
+      ]},
+      { title: "Core", dur2: "~14 min", dur3: "~20 min", scheme: "blue", exercises: [
+        { name: "MB Russian Twists",        sets: "2–3", reps: "15",           url: null },
+        { name: "In and Out Crunches",      sets: "2–3", reps: "12",           url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+        { name: "Side Plank with Leg Lift", sets: "2–3", reps: "30 sec / side",url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+        { name: "Plank with RB Leg Drives", sets: "2–3", reps: "10 / side",    url: "https://www.youtube.com/watch?v=TIcyOLoLjQ4&list=WL&index=17" },
+        { name: "Tabletop Plank Knee Touches", sets: "2–3", reps: "12",        url: "https://www.instagram.com/reels/DS682xoDWDC/" },
+        { name: "Copenhagen Plank",         sets: "2–3", reps: "20 sec / side",url: "https://www.instagram.com/reels/DSaZQb8ETyE/", optional: true },
+      ]},
+    ]
+  },
+  {
+    id: "F", name: "Strength Benchmark", dur2: "~25 min", dur3: "~25 min", scheme: "gold",
+    focus: "SL strength · Eccentric control · Explosive power · Core endurance",
+    subtitle: "Run every quarter — same conditions, same box, same footwear each time",
+    isBenchmark: true,
+    warmup: [
+      { name: "Wall Banded Leg Drives",   sets: 2, reps: "10 / side", url: "https://www.youtube.com/watch?v=gSl-v08hV2U&list=WL&index=19" },
+      { name: "Glute Bridge Knee Drives", sets: 2, reps: "10 / side", url: "https://www.instagram.com/reels/DX93Txyxw08/" },
+      { name: "Tib Raises",               sets: 2, reps: "15",        url: "https://www.instagram.com/reels/DSaZQb8ETyE/" },
+      { name: "Bent Knee Calf Raises",    sets: 2, reps: "15",        url: "https://www.instagram.com/reels/DUV4cKzjwQT/" },
+      { name: "Pogo Jumps",               sets: 2, reps: "20",        url: null },
+    ],
+    tests: [
+      { num: 1, name: "SL Calf Raise to Failure", target: "25+ reps / side",
+        desc: "Slow tempo, full ROM, no momentum. Count every clean rep. Tests Achilles and calf endurance — one of the best predictors of running economy.",
+        fields: [{ id: "t1l", label: "Left (reps)", placeholder: "e.g. 22", unit: "reps" }, { id: "t1r", label: "Right (reps)", placeholder: "e.g. 24", unit: "reps" }] },
+      { num: 2, name: "Poloquin Frontal Step Down @ 3-sec eccentric", target: "15+ reps / side",
+        desc: "Max controlled reps per side on your standard box. 3-second lowering phase. Tests eccentric quad strength — the primary limiter on technical descents.",
+        fields: [{ id: "t2l", label: "Left (reps)", placeholder: "e.g. 12", unit: "reps" }, { id: "t2r", label: "Right (reps)", placeholder: "e.g. 13", unit: "reps" }] },
+      { num: 3, name: "Box Pistol Squat AMRAP", target: "10+ reps / side",
+        desc: "Max reps per side on your standard box. Full depth, controlled. Note the box height — keep it identical every quarter.",
+        fields: [{ id: "t3l", label: "Left (reps)", placeholder: "e.g. 8", unit: "reps" }, { id: "t3r", label: "Right (reps)", placeholder: "e.g. 9", unit: "reps" }] },
+      { num: 4, name: "SL Triple Hop for Distance", target: "200+ cm / side",
+        desc: "3 consecutive hops on one leg — measure total distance with tape on the floor. Two attempts per side, record the best. The most running-specific test: maps directly to uphill drive and terrain reactivity.",
+        fields: [{ id: "t4l", label: "Left (cm)", placeholder: "e.g. 185", unit: "cm" }, { id: "t4r", label: "Right (cm)", placeholder: "e.g. 192", unit: "cm" }] },
+      { num: 5, name: "Copenhagen Plank Hold to Failure", target: "45+ sec / side",
+        desc: "Timed hold per side. Lateral hip and adductor stability — highly relevant for uneven trail surfaces and single-leg landing control.",
+        fields: [{ id: "t5l", label: "Left (sec)", placeholder: "e.g. 38", unit: "sec" }, { id: "t5r", label: "Right (sec)", placeholder: "e.g. 41", unit: "sec" }] },
+      { num: 6, name: "Wall Sit to Failure", target: "90+ sec",
+        desc: "Bodyweight, 90° knee angle, back flat against wall. Simple timer to failure. Tests isometric quad endurance and fatigue resistance.",
+        fields: [{ id: "t6", label: "Time (sec)", placeholder: "e.g. 75", unit: "sec" }] },
+    ],
+    sections: [], // dummy — benchmark uses custom render
+  },
 ];
+
+const RESULTS_KEY = 'strength_benchmark_results';
+
+function loadResults() {
+  try { return JSON.parse(localStorage.getItem(RESULTS_KEY) || '[]'); } catch { return []; }
+}
+function saveResults(results) {
+  localStorage.setItem(RESULTS_KEY, JSON.stringify(results));
+}
 
 const ROTATION = [
   { label: "Odd weeks",  days: ["A", "B"] },
@@ -652,6 +829,7 @@ let activeIdx = 0;
 function key(wId, si, ei) { return `${wId}-${si}-${ei}`; }
 
 function countProgress(wk) {
+  if (wk.isBenchmark) return { total: 0, done: 0 };
   let total = 0, done = 0;
   wk.sections.forEach((sec, si) => sec.exercises.forEach((_, ei) => {
     total++;
@@ -676,16 +854,107 @@ function renderTabs() {
     const prog = total > 0 ? Math.round(done / total * 100) : 0;
     const isActive = activeIdx === i;
     return `<button class="tab-btn${isActive ? ' ' + sc.tabActive : ''}" onclick="setTab(${i})">
-      <div class="tab-label">Workout ${wk.id}</div>
+      <div class="tab-label">${wk.isBenchmark ? 'Quarterly Test' : 'Workout ' + wk.id}</div>
       <div class="tab-name">${wk.name}</div>
-      <div class="tab-dur">${wk.singleDur ? wk.singleDur : `2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}`}</div>
+      <div class="tab-dur">${wk.isBenchmark ? '~25–30 min' : `2 sets: ${wk.dur2}<br>3 sets: ${wk.dur3}`}</div>
       ${done > 0 ? `<div class="tab-prog-bar"><div class="tab-prog-fill" style="width:${prog}%;background:${sc.fill}"></div></div>` : ''}
     </button>`;
   }).join('');
 }
 
+function renderBenchmark() {
+  const w = WORKOUTS[activeIdx];
+  const sc = S[w.scheme];
+  const results = loadResults();
+  const today = new Date().toISOString().split('T')[0];
+
+  // header
+  const headerHTML = `<div class="wk-header ${sc.cls}">
+    <div class="wk-header-top">
+      <div class="wk-header-name">${w.name}</div>
+      <div class="dur-pills"><span class="dur-pill">~25–30 min</span><span class="dur-pill">Every quarter</span></div>
+    </div>
+    <div class="wk-focus">${w.focus}</div>
+    <div class="wk-subtitle">${w.subtitle}</div>
+  </div>`;
+
+  // warm-up section
+  const warmupRows = w.warmup.map((ex, ei) => {
+    const k = key(w.id, 0, ei);
+    const isDone = !!ticked[k];
+    const nameEl = ex.url
+      ? `<a class="ex-link" href="${ex.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${ex.name}${extSVG()}</a>`
+      : `<span class="ex-name-plain">${ex.name}</span>`;
+    return `<div class="ex-row${isDone ? ' done' : ''}" onclick="toggleBmWarmup(${ei})">
+      <div class="tick-box${isDone ? ' checked' : ''}">${checkSVG()}</div>
+      <div class="ex-info">${nameEl}</div>
+      <span class="ex-sets">${ex.sets} sets × ${ex.reps}</span>
+    </div>`;
+  }).join('');
+  const warmupDone = w.warmup.filter((_, ei) => ticked[key(w.id, 0, ei)]).length;
+  const warmupBadge = warmupDone === w.warmup.length
+    ? `<span class="sec-badge sec-badge-done">✓ done</span>`
+    : warmupDone > 0 ? `<span class="sec-badge sec-badge-count">${warmupDone}/${w.warmup.length}</span>` : '';
+  const warmupHTML = `<div class="section">
+    <div class="sec-header sec-teal">
+      <div class="sec-header-left"><div class="sec-accent"></div><span class="sec-title">Warm-up</span>${warmupBadge}</div>
+      <span class="sec-dur">~5 min (2 sets)</span>
+    </div>${warmupRows}
+  </div>`;
+
+  // test cards
+  const testsHTML = w.tests.map(t => {
+    const fieldInputs = t.fields.map(f =>
+      `<div class="bm-input-group">
+        <div class="bm-input-label">${f.label}</div>
+        <input class="bm-input" id="inp_${f.id}" type="number" min="0" placeholder="${f.placeholder}">
+      </div>`
+    ).join('');
+    return `<div class="bm-test">
+      <div class="bm-test-header">
+        <div>
+          <div class="bm-test-num">Test ${t.num}</div>
+          <div class="bm-test-name">${t.name}</div>
+        </div>
+        <span class="bm-target">${t.target}</span>
+      </div>
+      <div class="bm-body">
+        <div class="bm-desc">${t.desc}</div>
+        <div class="bm-inputs">${fieldInputs}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // save row
+  const saveRow = `<div class="bm-save-row">
+    <input class="bm-date-input" type="date" id="bm_date" value="${today}">
+    <button class="bm-save-btn" onclick="saveBenchmark()">Save Results</button>
+  </div>`;
+
+  // history
+  let historyBody = '';
+  if (results.length === 0) {
+    historyBody = `<div class="bm-history-empty">No results yet — complete your first benchmark to start tracking progress.</div>`;
+  } else {
+    const allFields = w.tests.flatMap(t => t.fields);
+    const headers = ['Date', ...allFields.map(f => f.label.replace(' (reps)','').replace(' (sec)','').replace(' (cm)',''))].map(h => `<th>${h}</th>`).join('');
+    const rows = [...results].reverse().map(r => {
+      const cells = allFields.map(f => `<td>${r.scores[f.id] ?? '—'}</td>`).join('');
+      return `<tr><td>${r.date}</td>${cells}<td><button class="bm-delete-btn" onclick="deleteBenchmark('${r.date}')">✕</button></td></tr>`;
+    }).join('');
+    historyBody = `<table class="bm-history-table"><thead><tr>${headers}<th></th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+  const historyHTML = `<div class="bm-history">
+    <div class="bm-history-title">Results History</div>
+    ${historyBody}
+  </div>`;
+
+  document.getElementById('main').innerHTML = headerHTML + `<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:12px">${warmupHTML}</div>` + `<div class="bm-tests">${testsHTML}</div>` + saveRow + historyHTML;
+}
+
 function renderMain() {
   const w = WORKOUTS[activeIdx];
+  if (w.isBenchmark) { renderBenchmark(); return; }
   const sc = S[w.scheme];
   const { total, done } = countProgress(w);
   const prog = total > 0 ? Math.round(done / total * 100) : 0;
@@ -759,13 +1028,20 @@ function renderMain() {
     ? `<div class="iso-rest-note"><strong>Pacing:</strong> 45–60 sec rest between sets &nbsp;·&nbsp; Breathe steadily through each hold &nbsp;·&nbsp; No bouncing or compensating &nbsp;·&nbsp; Stop if sharp pain</div>`
     : `<div class="rest-note"><strong>Rest:</strong> 90–120 sec between sets on plyometrics &nbsp;·&nbsp; 60–90 sec on strength &nbsp;·&nbsp; 30–45 sec on core</div>`;
 
-  // rotation — hide for workout D, show a use-when note instead
+  // rotation — contextual per workout type
   const rotHTML = w.isRecovery
     ? `<div class="rotation-block">
         <div class="rotation-title">When to use this session</div>
         <div style="font-size:13px;color:var(--text2);line-height:1.7">
           Use Workout D the day after a race, long run, or any session that left your legs feeling heavy and your tendons stiff.
           It is <em>not</em> part of the weekly A/B/C rotation — think of it as a tool you reach for when recovery demands it.
+        </div>
+      </div>`
+    : w.isUpperOnly
+    ? `<div class="rotation-block">
+        <div class="rotation-title">When to use this session</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7">
+          Use Workout E on any day when your legs need full rest — after a hard race, back-to-back run days, or whenever training load is high. No leg exercises, no impact. Pull it out whenever you still want to move but your legs say no.
         </div>
       </div>`
     : `<div class="rotation-block">
@@ -797,6 +1073,33 @@ function renderMain() {
 function render() { renderTabs(); renderMain(); }
 
 window.setTab = function(i) { activeIdx = i; render(); };
+window.toggleBmWarmup = function(ei) {
+  const w = WORKOUTS[activeIdx];
+  const k = key(w.id, 0, ei);
+  ticked[k] = !ticked[k];
+  renderBenchmark();
+};
+window.saveBenchmark = function() {
+  const w = WORKOUTS[activeIdx];
+  const date = document.getElementById('bm_date').value || new Date().toISOString().split('T')[0];
+  const scores = {};
+  w.tests.forEach(t => t.fields.forEach(f => {
+    const val = document.getElementById('inp_' + f.id).value;
+    scores[f.id] = val !== '' ? Number(val) : null;
+  }));
+  const results = loadResults();
+  const existing = results.findIndex(r => r.date === date);
+  if (existing >= 0) results[existing].scores = scores;
+  else results.push({ date, scores });
+  results.sort((a, b) => a.date.localeCompare(b.date));
+  saveResults(results);
+  renderBenchmark();
+};
+window.deleteBenchmark = function(date) {
+  const results = loadResults().filter(r => r.date !== date);
+  saveResults(results);
+  renderBenchmark();
+};
 window.toggle = function(wId, si, ei) {
   const k = key(wId, si, ei);
   ticked[k] = !ticked[k];
